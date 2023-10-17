@@ -18,6 +18,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
 @RequiredArgsConstructor
 @Configuration
 
@@ -31,6 +33,7 @@ public class WebSecurityConfig {
     @Bean
     public WebSecurityCustomizer configure() {
         return (web) -> web.ignoring()
+                .requestMatchers(toH2Console())
                 .requestMatchers("/static/**");
     }
 
@@ -38,10 +41,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .cors().configurationSource(corsConfigurationSource())
-                .and()
+//                .cors().configurationSource(corsConfigurationSource())
+//                .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/login").permitAll()
+                .requestMatchers("/user").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
