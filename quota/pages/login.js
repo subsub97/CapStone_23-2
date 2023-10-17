@@ -12,17 +12,20 @@ export default function LoginPage() {
 
   function login() {
     const { email, password } = formData;
-    Axios.post("http://localhost:8080/login", { email, password }).then(
-      (res) => {
-        if (res.status === 200) {
-          const accessToken = res.data.accessToken;
-          const refreshToken = res.data.refreshToken;
-          handleLoginSuccess(accessToken, refreshToken);
-        } else {
-          router.push("/login");
-        }
+    const formDataToSend = new FormData();
+    formDataToSend.append("email", email);
+    formDataToSend.append("password", password);
+    Axios.post("http://localhost:8080/login", formDataToSend, {
+      withCredentials: true,
+    }).then((res) => {
+      if (res.status === 200) {
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
+        handleLoginSuccess(accessToken, refreshToken);
+      } else {
+        router.push("/login");
       }
-    );
+    });
   }
 
   function handleLoginSuccess(accessToken, refreshToken) {
