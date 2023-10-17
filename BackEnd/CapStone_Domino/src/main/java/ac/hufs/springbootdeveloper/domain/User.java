@@ -10,7 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Table(name = "users")
@@ -43,7 +42,7 @@ public class User implements UserDetails {
     }
     
     @Override
-    public String getusername() {
+    public String getUsername() {
         return email;
     }
     
