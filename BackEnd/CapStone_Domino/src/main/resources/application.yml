@@ -11,3 +11,16 @@ springdoc:
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   paths-to-match:
+
+Spring:
+  jpa:
+    show-sql:true
+  properties:
+    hibernate:
+      format_sql:true
+  datasource:
+    url: jdbc:h2:mem:testdbA
+    username: sa
+  h2:
+    console:
+      enabled: true
