@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dc21bd-3a49-4102-be1f-b6e0a5dfd474" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../quota/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../quota/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../quota/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../quota/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/CapStone_Domino.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ac/hufs/springbootdeveloper/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ac/hufs/springbootdeveloper/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../quota/pages/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../quota/pages/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../quota/pages/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../quota/pages/signup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +22,26 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -33,11 +57,21 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "android.gradle.sync.needed": "true",
-    "git-widget-placeholder": "BackEnd",
+    "git-widget-placeholder": "TEST",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "spring.configuration.checksum": "fe8ac839ac12f49210e2e3f1e8464765",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -51,6 +85,9 @@
       <updated>1697281786145</updated>
       <workItem from="1697281787159" duration="13000" />
       <workItem from="1697281806265" duration="99000" />
+      <workItem from="1697544546778" duration="70000" />
+      <workItem from="1697544628308" duration="698000" />
+      <workItem from="1697545435069" duration="3164000" />
     </task>
     <servers />
   </component>

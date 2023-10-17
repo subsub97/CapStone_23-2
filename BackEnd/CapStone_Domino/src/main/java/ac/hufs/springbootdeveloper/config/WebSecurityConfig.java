@@ -41,10 +41,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-//                .cors().configurationSource(corsConfigurationSource())
-//                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/user").permitAll()
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+                .authorizeRequests()
+                .requestMatchers("/login","/user","/test").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

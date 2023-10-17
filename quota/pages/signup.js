@@ -11,7 +11,7 @@ export default function SignUpPage() {
   const router = useRouter();
   function signup() {
     const { email, password } = formData;
-    Axios.post("http://localhost:8080/signup", { email, password }).then(
+    Axios.post("http://localhost:8080/user", { email, password }).then(
       (res) => {
         if (res.status === 200) {
           router.push("/login");

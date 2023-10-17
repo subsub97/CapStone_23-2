@@ -16,7 +16,7 @@ export default function LoginPage() {
     formDataToSend.append("email", email);
     formDataToSend.append("password", password);
     Axios.post("http://localhost:8080/login", formDataToSend, {
-      withCredentials: true,
+      withCredentials: true
     }).then((res) => {
       if (res.status === 200) {
         const accessToken = res.data.accessToken;
