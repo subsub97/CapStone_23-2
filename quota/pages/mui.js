@@ -111,7 +111,7 @@ export default function SignInSide() {
       [name]: value,
     });
   }
-
+  const backgroundImageUrl = "/bg2.jpg";
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -122,8 +122,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
+            backgroundImage: `url(${backgroundImageUrl})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
