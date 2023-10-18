@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Axios from "axios";
+import GoogleButton from "./GoogleButton";
 
 function Copyright(props) {
   return (
@@ -148,11 +149,22 @@ export default function SignInSide() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate sx={{ mt: 1 }}>
+            <Box
+              component="form"
+              noValidate
+              sx={{
+                mt: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "70%",
+              }}
+            >
               <TextField
                 margin="normal"
                 required
-                fullWidth
+                style={{ width: "60%" }}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -163,7 +175,7 @@ export default function SignInSide() {
               <TextField
                 margin="normal"
                 required
-                fullWidth
+                style={{ width: "60%" }}
                 name="password"
                 label="Password"
                 type="password"
@@ -173,20 +185,20 @@ export default function SignInSide() {
               />
               <Button
                 type="button"
-                fullWidth
+                style={{ width: "60%" }}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 onClick={login}
               >
                 Sign In
               </Button>
+              <GoogleButton style={{ width: "200px" }} />
+              <Link href="/muisignup" variant="body2" sx={{ mt: 3, mb: 0 }}>
+                {"Don't have an account? Sign Up"}
+              </Link>
               <Grid container>
                 <Grid item xs></Grid>
-                <Grid item>
-                  <Link href="/muisignup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+                <Grid item></Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>

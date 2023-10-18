@@ -97,11 +97,22 @@ export default function SignUpSide() {
             <Typography component="h1" variant="h5">
               Sign up
             </Typography>
-            <Box component="form" noValidate sx={{ mt: 1 }}>
+            <Box
+              component="form"
+              noValidate
+              sx={{
+                mt: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "70%",
+              }}
+            >
               <TextField
                 margin="normal"
                 required
-                fullWidth
+                style={{ width: "60%" }}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -112,7 +123,7 @@ export default function SignUpSide() {
               <TextField
                 margin="normal"
                 required
-                fullWidth
+                style={{ width: "60%" }}
                 name="password"
                 label="Password"
                 type="password"
@@ -122,7 +133,7 @@ export default function SignUpSide() {
               />
               <Button
                 type="button"
-                fullWidth
+                style={{ width: "60%" }}
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
                 onClick={signup}
