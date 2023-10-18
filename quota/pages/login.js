@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { Button, Form } from "semantic-ui-react";
 import Axios from "axios";
 import GoogleButton from "./GoogleButton";
-
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -19,16 +18,9 @@ export default function LoginPage() {
       withCredentials: true,
     }).then((res) => {
       if (res.status === 200) {
-        Axios.get("http://localhost:8080/refresh", {
-          withCredentials: true,
-        }).then((res) => {
-          if (res.status === 200) {
-            const refreshToken = res.data.refreshToken;
-            handleLoginSuccess(refreshToken);
-          }
-        });
+        router.push("/chat");
       } else {
-        router.push("/login");
+        router.push("/chat");
       }
     });
   }
