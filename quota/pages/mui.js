@@ -38,19 +38,24 @@ function Copyright(props) {
 const defaultTheme = createTheme({});
 
 export default function SignInSide() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ mid: "", mpw: "" });
   const router = useRouter();
 
   function login() {
-    const { email, password } = formData;
-    const formDataToSend = new FormData();
-    formDataToSend.append("email", email);
-    formDataToSend.append("password", password);
-    Axios.post("http://localhost:8080/login", formDataToSend, {
-      withCredentials: true,
-    }).then((res) => {
+    const { mid, mpw } = formData;
+    Axios.post(
+      "http://localhost:8080/generateToken",
+      { mid, mpw },
+      {
+        withCredentials: true,
+      }
+    ).then((res) => {
       if (res.status === 200) {
-        router.push("/chat");
+        const accessToken = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        // handleLoginSuccess(accessToken, refreshToken);
       } else {
         console.log("hi");
       }
@@ -58,8 +63,7 @@ export default function SignInSide() {
   }
 
   function handleLoginSuccess(accessToken, refreshToken) {
-    const storedAccessToken = accessToken;
-
+    localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
 
     Axios.post("http://localhost:8080/login", storedAccessToken, {
@@ -71,7 +75,7 @@ export default function SignInSide() {
         if (res.status === 200) {
           router.push("/chat");
         } else if (res.status === 401) {
-          handleAccessTokenExpired(email, refreshToken);
+          handleAccessTokenExpired(mid, refreshToken);
         } else {
           router.push("/login");
         }
@@ -81,8 +85,8 @@ export default function SignInSide() {
       });
   }
 
-  function handleAccessTokenExpired(email, refreshToken) {
-    Axios.post("http://localhost:8080/refresh", { email, refreshToken })
+  function handleAccessTokenExpired(mid, refreshToken) {
+    Axios.post("http://localhost:8080/refresh", { mid, refreshToken })
       .then((response) => {
         const newAccessToken = response.data.accessToken;
         Axios.post("http://localhost:8080/login", data, {
@@ -164,10 +168,10 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 style={{ width: "60%" }}
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="mid"
+                label="mid Address"
+                name="mid"
+                autoComplete="mid"
                 autoFocus
                 onChange={handleInputChange}
               />
@@ -175,11 +179,11 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 style={{ width: "60%" }}
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name="mpw"
+                label="mpw"
+                type="mpw"
+                id="mpw"
+                autoComplete="current-mpw"
                 onChange={handleInputChange}
               />
               <Button
