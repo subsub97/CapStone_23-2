@@ -53,9 +53,7 @@ export default function SignInSide() {
       if (res.status === 200) {
         const accessToken = res.data.accessToken;
         const refreshToken = res.data.refreshToken;
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        // handleLoginSuccess(accessToken, refreshToken);
+        handleLoginSuccess(accessToken, refreshToken);
       } else {
         console.log("hi");
       }
@@ -66,16 +64,16 @@ export default function SignInSide() {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
 
-    Axios.post("http://localhost:8080/login", storedAccessToken, {
+    Axios.get("http://localhost:8080/api/sample/doA", {
       headers: {
-        Authorization: `Bearer ${storedAccessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     })
       .then((res) => {
         if (res.status === 200) {
           router.push("/chat");
         } else if (res.status === 401) {
-          handleAccessTokenExpired(mid, refreshToken);
+          // handleAccessTokenExpired(mid, refreshToken);
         } else {
           router.push("/login");
         }
