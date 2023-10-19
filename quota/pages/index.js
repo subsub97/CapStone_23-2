@@ -8,7 +8,7 @@ export default function Home() {
 
   const handleLogin = () => {
     setLoggedIn(!loggedIn);
-    router.push("/login");
+    router.push("/mui");
   };
 
   const backgroundStyle = {

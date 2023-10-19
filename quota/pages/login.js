@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { Button, Form } from "semantic-ui-react";
 import Axios from "axios";
 import GoogleButton from "./GoogleButton";
-
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -19,28 +18,32 @@ export default function LoginPage() {
       withCredentials: true
     }).then((res) => {
       if (res.status === 200) {
-        const accessToken = res.data.accessToken;
-        const refreshToken = res.data.refreshToken;
-        handleLoginSuccess(accessToken, refreshToken);
+        router.push("/chat");
       } else {
-        router.push("/login");
+        router.push("/chat");
       }
     });
   }
 
-  function handleLoginSuccess(accessToken, refreshToken) {
-    const storedAccessToken = accessToken;
+  function handleLoginSuccess(refreshToken2) {
+    localStorage.setItem("refreshToken", refreshToken2);
+    const refreshToken = localStorage.getItem("refreshToken");
 
-    localStorage.setItem("refreshToken", refreshToken);
-
-    Axios.post("http://localhost:8080/login", storedAccessToken, {
+    Axios.post("http://localhost:8080/login", refreshToken, {
       headers: {
-        Authorization: `Bearer ${storedAccessToken}`,
+        Authorization: `Bearer ${refreshToken}`,
       },
     })
       .then((res) => {
         if (res.status === 200) {
-          router.push("/chat");
+          const accessToken = res.data.accessToken;
+          Axios.post("http://localhost:8080/login", accessToken, {
+            withCredentials: true,
+          }).then((res) => {
+            if (res.status === 200) {
+              router.push("/chat");
+            }
+          });
         } else if (res.status === 401) {
           handleAccessTokenExpired(email, refreshToken);
         } else {
