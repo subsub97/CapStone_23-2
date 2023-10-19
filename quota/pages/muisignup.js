@@ -41,15 +41,16 @@ export default function SignUpSide() {
   const router = useRouter();
   function signup() {
     const { email, password } = formData;
-    Axios.post("http://localhost:8080/signup", { email, password }).then(
-      (res) => {
-        if (res.status === 200) {
-          router.push("/login");
-        } else {
-          console.log(error);
-        }
-      }
-    );
+    // Axios.post("http://localhost:8080/signup", { email, password }).then(
+    //   (res) => {
+    //     if (res.status === 200) {
+    //       router.push("/login");
+    //     } else {
+    //       console.log(error);
+    //     }
+    //   }
+    // );
+    router.push("/mui");
   }
 
   function handleInputChange(event) {
@@ -59,6 +60,7 @@ export default function SignUpSide() {
       [name]: value,
     });
   }
+  const backgroundImageUrl = "/bg3.png";
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -70,8 +72,7 @@ export default function SignUpSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
+            backgroundImage: `url(${backgroundImageUrl})`,
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
