@@ -1,54 +1,131 @@
-import { useState } from "react";
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-  Avatar,
-} from "@chatscope/chat-ui-kit-react";
-import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import React, { useEffect, useState, useRef } from "react";
+import styles from "@/styles/Chat.module.css";
+import axios from "axios";
 
-export default function Document() {
+function Chat() {
   const [messages, setMessages] = useState([]);
-  const handleSendMessage = (message) => {
-    // 메시지를 보낼 때 처리 로직을 추가하세요
-    // 여기에서는 메시지 목록을 업데이트하여 화면에 메시지를 표시합니다.
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        message,
-        sentTime: new Date().toLocaleTimeString(),
-        sender: "User",
-        direction: "outgoing",
-      },
-    ]);
+  const [newMessage, setNewMessage] = useState("");
+  const [file, setFile] = useState(null);
+  const [selectedFileName, setSelectedFileName] = useState("");
+
+  const chatMessagesRef = useRef(null);
+
+  const handleSendMessage = () => {
+    if (newMessage.trim() !== "") {
+      setMessages([...messages, newMessage]);
+      setNewMessage("");
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      setSelectedFileName(selectedFile.name);
+      if (selectedFile.type === "application/pdf") {
+        setFile(selectedFile);
+      } else {
+        console.log("Unsupported file type. Please select a PDF file.");
+      }
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!file) {
+      console.log("파일을 선택하세요.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("files", file);
+
+    try {
+      setMessages([...messages, `Uploaded file: ${selectedFileName}`]);
+
+      // axios.post("http://localhost:8080/upload", formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+
+      setFile(null);
+      setSelectedFileName("");
+    } catch (error) {
+      console.error("파일 업로드 실패", error);
+    }
+  };
+
+  const handleSendAndUpload = () => {
+    if (newMessage.trim() && file) {
+      handleSendMessage();
+      handleUpload();
+    } else if (newMessage.trim()) {
+      handleSendMessage();
+    } else if (file) {
+      handleUpload();
+    }
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 100,
-        right: 500,
-        width: "100vh",
-        height: "80vh",
-      }}
-    >
-      <MainContainer>
-        <ChatContainer>
-          <MessageList>
-            {messages.map((message, index) => (
-              <Message key={index} model={message} />
-            ))}
-          </MessageList>
-          <MessageInput
-            onAttachClick={logHi}
-            placeholder="Type message here"
-            onSend={(message) => handleSendMessage(message)}
+    <div className={styles.parentContainer}>
+      <div className={styles.chatContainer}>
+        <div className={styles.chatMessages} ref={chatMessagesRef}>
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={styles.message}
+              style={{
+                backgroundColor: `rgba(192, 192, 192, ${message.length / 200})`,
+              }}
+            >
+              {message}
+            </div>
+          ))}
+        </div>
+        <div className={styles.chatInput}>
+          <label htmlFor="ex_file">
+            <div className="btnStart">
+              <img src="/file.png" />
+            </div>
+          </label>
+          <input
+            type="file"
+            accept=".pdf"
+            id="ex_file"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
           />
-        </ChatContainer>
-      </MainContainer>
+          <input
+            type="text"
+            placeholder="Type a message..."
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            className={styles.input}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleSendAndUpload();
+              }
+            }}
+          />
+          {selectedFileName && <div>{selectedFileName}</div>}
+          <button onClick={handleSendAndUpload} className={styles.button}>
+            Send
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
+
+export default Chat;
