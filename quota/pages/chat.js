@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "@/styles/Chat.module.css";
+import { TypeAnimation } from "react-type-animation";
 import axios from "axios";
 
 function Chat() {
@@ -12,7 +13,7 @@ function Chat() {
 
   const handleSendMessage = () => {
     if (newMessage.trim() !== "") {
-      setMessages([...messages, newMessage]);
+      setMessages([...messages, { content: newMessage, sender: "user" }]);
       setNewMessage("");
     }
   };
@@ -50,7 +51,10 @@ function Chat() {
     formData.append("files", file);
 
     try {
-      setMessages([...messages, `Uploaded file: ${selectedFileName}`]);
+      setMessages([
+        ...messages,
+        { content: `Uploaded file: ${selectedFileName}`, sender: "user" },
+      ]);
 
       // axios.post("http://localhost:8080/upload", formData, {
       //   headers: {
@@ -76,13 +80,40 @@ function Chat() {
     }
   };
 
+  const handleSendAIMessage = () => {
+    const aiMessage = "죽고싶다";
+    setMessages([...messages, { content: aiMessage, sender: "AI" }]);
+  };
+
   return (
     <div className={styles.parentContainer}>
       <div className={styles.chatContainer}>
+        {/* <button onClick={handleSendAIMessage}>AI 메시지 보내기</button> */}
         <div className={styles.chatMessages} ref={chatMessagesRef}>
           {messages.map((message, index) => (
-            <div className={styles.messageContainer} key={index}>
-              <div className={styles.message}>{message}</div>
+            <div
+              className={styles.messageContainer}
+              key={index}
+              style={{ textAlign: message.sender === "AI" ? "left" : "right" }}
+            >
+              <div
+                className={styles.message}
+                style={{
+                  backgroundColor: message.sender === "AI" ? "blue" : "#5347cd",
+                }}
+              >
+                {message.sender === "AI" ? (
+                  <TypeAnimation
+                    sequence={[message.content, 1000]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
+                    cursor={false}
+                  />
+                ) : (
+                  message.content
+                )}
+              </div>
             </div>
           ))}
         </div>

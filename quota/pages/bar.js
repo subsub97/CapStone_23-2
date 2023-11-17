@@ -38,14 +38,26 @@ const profileStyles = {
   fontFamily: "Jalnan",
 };
 
+const info = {
+  width: "100px",
+  height: "30px",
+  backgroundColor: "#ffffff",
+  color: "#000000",
+  border: "0.5px solid #a0a0a0",
+  fontFamily: "Jalnan",
+  fontSize: "14px",
+  borderRadius: "12px",
+};
+
 const slideBarStyles = (isOpen) => ({
   position: "fixed",
-  top: "70px",
+  top: "50px",
   right: "0",
   width: "200px",
   height: "10vh",
+  visibility: isOpen ? "visible" : "hidden",
   transition: "transform 0.3s ease-in-out",
-  transform: isOpen ? "translateX(40%)" : "translateX(100%)",
+  transform: isOpen ? "translateY(0%)" : "translateY(-10%)",
   padding: "10px",
   zIndex: 3,
 });
@@ -55,7 +67,6 @@ const buttonStyles = {
   height: "50px",
   backgroundColor: "#ffffff",
   color: "#4D377B",
-  fontSize: "20px",
   border: "none",
   cursor: "pointer",
   fontFamily: "Jalnan",
@@ -105,20 +116,18 @@ function Topbar({ google_name }) {
           <div style={quotaStyles}>Quota</div>
         </div>
         <div style={profileStyles}>
-          <div>환영합니다, 양진혁님</div>
+          <div onClick={handleImageClick}>환영합니다, 양진혁님</div>
           {/* {google_name} */}
-          <img
-            src="profile.jpg"
-            alt="Profile"
-            width="40"
-            height="40"
-            onClick={handleImageClick}
-          />
+          <img src="profile.jpg" alt="Profile" width="40" height="40" />
         </div>
         <div style={slideBarStyles(isSlideBarOpen)}>
-          <button onClick={handleLogout}>내 정보 수정</button>
+          <button onClick={handleLogout} style={info}>
+            내 정보 수정
+          </button>
           <br></br>
-          <button onClick={handleLogout}>로그아웃</button>
+          <button onClick={handleLogout} style={info}>
+            로그아웃
+          </button>
         </div>
       </div>
     </div>
