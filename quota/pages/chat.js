@@ -81,14 +81,8 @@ function Chat() {
       <div className={styles.chatContainer}>
         <div className={styles.chatMessages} ref={chatMessagesRef}>
           {messages.map((message, index) => (
-            <div
-              key={index}
-              className={styles.message}
-              style={{
-                backgroundColor: `rgba(192, 192, 192, ${message.length / 200})`,
-              }}
-            >
-              {message}
+            <div className={styles.messageContainer} key={index}>
+              <div className={styles.message}>{message}</div>
             </div>
           ))}
         </div>
@@ -107,7 +101,7 @@ function Chat() {
           />
           <input
             type="text"
-            placeholder="Type a message..."
+            placeholder="메세지를 입력하세요"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             className={styles.input}
@@ -120,7 +114,7 @@ function Chat() {
           />
           {selectedFileName && <div>{selectedFileName}</div>}
           <button onClick={handleSendAndUpload} className={styles.button}>
-            Send
+            <img src="/send.png" alt="send image" />
           </button>
         </div>
       </div>

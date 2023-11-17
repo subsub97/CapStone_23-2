@@ -38,7 +38,11 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme({});
+const defaultTheme = createTheme({
+  typography: {
+    fontFamily: "Jalnan", // 사용하고자 하는 폰트명
+  },
+});
 
 export default function SignInSide() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -70,7 +74,7 @@ export default function SignInSide() {
     })
       .then((res) => {
         if (res.status === 200) {
-          router.push("/chat");
+          router.push("/main");
         } else if (res.status === 401) {
           // handleAccessTokenExpired(email, refreshToken);
         } else {
