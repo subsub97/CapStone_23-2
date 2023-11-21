@@ -29,6 +29,7 @@ const quotaStyles = {
   color: "#00D295",
   fontSize: "40px",
   fontFamily: "SBAggroB",
+  cursor: "pointer",
 };
 
 const profileStyles = {
@@ -90,6 +91,10 @@ function Topbar({ google_name }) {
     window.location.href = "/";
   };
 
+  const gohome = () => {
+    window.location.href = "/main";
+  };
+
   return (
     <div>
       <div style={sidebarStyles(isSidebarOpen)}>
@@ -111,9 +116,13 @@ function Topbar({ google_name }) {
               background: "none",
               marginLeft: "30px",
               marginBottom: "3px",
+              cursor: "pointer",
             }}
+            onClick={gohome}
           ></img>
-          <div style={quotaStyles}>Quota</div>
+          <div style={quotaStyles} onClick={gohome}>
+            Quota
+          </div>
         </div>
         <div style={profileStyles}>
           <div onClick={handleImageClick}>환영합니다, 양진혁님</div>

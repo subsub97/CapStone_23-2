@@ -53,7 +53,7 @@ function Chat() {
     try {
       setMessages([
         ...messages,
-        { content: `Uploaded file: ${selectedFileName}`, sender: "user" },
+        { content: `Uploaded file: ${selectedFileName}`, sender: "file" },
       ]);
 
       // axios.post("http://localhost:8080/upload", formData, {
@@ -81,7 +81,16 @@ function Chat() {
   };
 
   const handleSendAIMessage = () => {
-    const aiMessage = "죽고싶다";
+    const aiMessage = [
+      "회사명 : 더치트 주식회사 (TheCheat Corporation)",
+      "회사 영문명: TheCheat Corporation",
+      "법인 등록번호: 110111-4815770",
+      "본점 주소: 서울특별시 서초구 반포대로14길 54, 에이동 602호(서초동, 신성오피스텔)",
+      "발행할 주식의 총수: 40,000주",
+      "설립 시 액면가: 금 5,000 원",
+      "현재 액면가: 금 5,000원",
+      "회사설립연월일: 2012년 3월 9일",
+    ];
     setMessages([...messages, { content: aiMessage, sender: "AI" }]);
   };
 
@@ -99,17 +108,26 @@ function Chat() {
               <div
                 className={styles.message}
                 style={{
-                  backgroundColor: message.sender === "AI" ? "blue" : "#5347cd",
+                  backgroundColor:
+                    message.sender === "AI"
+                      ? "blue"
+                      : message.sender === "file"
+                      ? "#008d62"
+                      : "#5347cd",
                 }}
               >
                 {message.sender === "AI" ? (
-                  <TypeAnimation
-                    sequence={[message.content, 1000]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                    cursor={false}
-                  />
+                  Array.isArray(message.content) ? (
+                    message.content.map((text, i) => <p key={i}>{text}</p>)
+                  ) : (
+                    <TypeAnimation
+                      sequence={[message.content, 1000]}
+                      wrapper="span"
+                      speed={50}
+                      repeat={Infinity}
+                      cursor={false}
+                    />
+                  )
                 ) : (
                   message.content
                 )}

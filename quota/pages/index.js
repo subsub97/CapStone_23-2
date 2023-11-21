@@ -200,7 +200,7 @@ export default function SignInSide() {
               <GoogleOAuthProvider clientId={ClientId}>
                 <Login />
               </GoogleOAuthProvider>
-              <Link href="/muisignup" variant="body2" sx={{ mt: 3, mb: 0 }}>
+              <Link href="/signup" variant="body2" sx={{ mt: 3, mb: 0 }}>
                 {"Don't have an account? Sign Up"}
               </Link>
               <Grid container>
