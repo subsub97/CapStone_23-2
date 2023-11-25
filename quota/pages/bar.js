@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 const sidebarStyles = (isOpen) => ({
   height: "calc(100vh - 80px)",
@@ -96,6 +97,8 @@ function Topbar({ google_name }) {
   const [isSlideBarOpen, setSlideBarOpen] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [chats, setChats] = useState([]);
+  const router = useRouter();
+  const { googlename, googlepicture } = router.query;
 
   const handleNewChat = () => {
     const newChat = {
@@ -159,9 +162,8 @@ function Topbar({ google_name }) {
           </div>
         </div>
         <div style={profileStyles}>
-          <div onClick={handleImageClick}>환영합니다, 양진혁님</div>
-          {/* {google_name} */}
-          <img src="profile.jpg" alt="Profile" width="40" height="40" />
+          <div onClick={handleImageClick}>환영합니다, {googlename}</div>
+          <img src={googlepicture} alt="Profile" width="40" height="40" />
         </div>
         <div style={slideBarStyles(isSlideBarOpen)}>
           <button onClick={handleLogout} style={info}>

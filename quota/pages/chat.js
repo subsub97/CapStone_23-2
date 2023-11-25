@@ -14,7 +14,7 @@ function Chat() {
   const handleSendMessage = async () => {
     if (newMessage.trim() !== "") {
       setMessages([...messages, { content: newMessage, sender: "user" }]);
-
+      setNewMessage("");
       try {
         const response = await axios.post(
           "http://127.0.0.1:8000/uploading/text/",
@@ -25,7 +25,6 @@ function Chat() {
             },
           }
         );
-        setNewMessage("");
 
         if (response.status === 200) {
           setMessages([
