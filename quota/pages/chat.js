@@ -11,10 +11,34 @@ function Chat() {
 
   const chatMessagesRef = useRef(null);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (newMessage.trim() !== "") {
       setMessages([...messages, { content: newMessage, sender: "user" }]);
-      setNewMessage("");
+
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8000/uploading/text/",
+          { text: newMessage },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setMessages([
+            ...messages,
+            { content: newMessage, sender: "user" },
+            { content: response.data.message, sender: "AI" },
+          ]);
+          setNewMessage("");
+        } else {
+          console.log("서버에서 응답이 올바르지 않습니다.");
+        }
+      } catch (error) {
+        console.error("메시지 전송 실패", error);
+      }
     }
   };
 
