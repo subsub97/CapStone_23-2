@@ -81,14 +81,14 @@ function Chat() {
   };
 
   const handleSendAIMessage = () => {
-    const aiMessage = "더치트 \n  ";
+    const aiMessage = "더치트 \n gd ";
     setMessages([...messages, { content: aiMessage, sender: "AI" }]);
   };
 
   return (
     <div className={styles.parentContainer}>
       <div className={styles.chatContainer}>
-        {/* <button onClick={handleSendAIMessage}>AI 메시지 보내기</button> */}
+        <button onClick={handleSendAIMessage}>AI 메시지 보내기</button>
         <div className={styles.chatMessages} ref={chatMessagesRef}>
           {messages.map((message, index) => (
             <div
