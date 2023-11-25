@@ -51,16 +51,22 @@ function Chat() {
     formData.append("files", file);
 
     try {
-      setMessages([
-        ...messages,
-        { content: `Uploaded file: ${selectedFileName}`, sender: "file" },
-      ]);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/uploading/pdf/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-      // axios.post("http://localhost:8080/upload", formData, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
+      if (response.status === 200) {
+        setMessages([
+          ...messages,
+          { content: `Uploaded file: ${selectedFileName}`, sender: "file" },
+        ]);
+      }
 
       setFile(null);
       setSelectedFileName("");

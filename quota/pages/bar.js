@@ -60,7 +60,6 @@ const slideBarStyles = (isOpen) => ({
   transition: "transform 0.3s ease-in-out",
   transform: isOpen ? "translateY(0%)" : "translateY(-10%)",
   padding: "10px",
-  zIndex: 3,
 });
 
 const buttonStyles = {
@@ -68,6 +67,7 @@ const buttonStyles = {
   height: "50px",
   backgroundColor: "#ffffff",
   color: "#4D377B",
+  marginBottom: "10px",
   border: "none",
   cursor: "pointer",
   fontFamily: "Jalnan",
@@ -75,9 +75,35 @@ const buttonStyles = {
   borderRadius: "12px",
 };
 
+const listStyles = {
+  width: "250px",
+  height: "50px",
+  marginBottom: "10px",
+  backgroundColor: "#CCD1FF",
+  color: "#000000",
+  border: "none",
+  cursor: "pointer",
+  fontFamily: "Jalnan",
+  fontSize: "16px",
+  borderRadius: "12px",
+  textAlign: "center",
+  justifyContent: "center",
+  display: "flex",
+  alignItems: "center",
+};
+
 function Topbar({ google_name }) {
   const [isSlideBarOpen, setSlideBarOpen] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [chats, setChats] = useState([]);
+
+  const handleNewChat = () => {
+    const newChat = {
+      id: chats.length, // 새로운 채팅의 ID를 생성합니다. 실제 애플리케이션에서는 더 복잡한 ID 생성 방식을 사용할 수 있습니다.
+      messages: [], // 새로운 채팅의 메시지 목록을 초기화합니다.
+    };
+    setChats([...chats, newChat]);
+  };
 
   const handleImageClick = () => {
     setSlideBarOpen(!isSlideBarOpen);
@@ -98,7 +124,15 @@ function Topbar({ google_name }) {
   return (
     <div>
       <div style={sidebarStyles(isSidebarOpen)}>
-        <button style={buttonStyles}>+ 새 채팅 시작</button>
+        <button style={buttonStyles} onClick={handleNewChat}>
+          + 새 채팅 시작
+        </button>
+        {chats.map((chat) => (
+          <div key={chat.id} style={listStyles}>
+            {/* 각 채팅의 내용을 렌더링합니다. 이 예시에서는 각 채팅의 ID만 출력합니다. */}
+            채팅 ID: {chat.id}
+          </div>
+        ))}
       </div>
       <div style={topbarStyles}>
         <div style={{ display: "flex", alignItems: "center" }}>
