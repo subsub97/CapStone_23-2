@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 
 const sidebarStyles = (isOpen) => ({
   height: "calc(100vh - 80px)",
@@ -97,8 +96,8 @@ function Topbar({ google_name }) {
   const [isSlideBarOpen, setSlideBarOpen] = useState(false);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [chats, setChats] = useState([]);
-  const router = useRouter();
-  const { googlename, googlepicture } = router.query;
+  const googlename = localStorage.getItem("googlename");
+  const googlepicture = localStorage.getItem("googlepicture");
 
   const handleNewChat = () => {
     const newChat = {

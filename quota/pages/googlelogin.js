@@ -14,13 +14,14 @@ const Login = () => {
       axios
         .post("http://localhost:8080/auth/code/google/callback", { code })
         .then(({ data }) => {
-          localStorage.setItem("accessToken", data.access_token);
-          localStorage.setItem("refreshToken", data.refresh_token);
+          localStorage.setItem("accessToken", data.accesstoken);
+          localStorage.setItem("refreshToken", data.refreshtoken);
+          localStorage.setItem("googlename", data.name);
+          localStorage.setItem("googlepicture", data.profile);
 
           router
             .push({
               pathname: "/main",
-              query: { name: data.name, picture: data.profile },
             })
             .catch((err) => console.error(err));
         });
