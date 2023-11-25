@@ -81,23 +81,14 @@ function Chat() {
   };
 
   const handleSendAIMessage = () => {
-    const aiMessage = [
-      "회사명 : 더치트 주식회사 (TheCheat Corporation)",
-      "회사 영문명: TheCheat Corporation",
-      "법인 등록번호: 110111-4815770",
-      "본점 주소: 서울특별시 서초구 반포대로14길 54, 에이동 602호(서초동, 신성오피스텔)",
-      "발행할 주식의 총수: 40,000주",
-      "설립 시 액면가: 금 5,000 원",
-      "현재 액면가: 금 5,000원",
-      "회사설립연월일: 2012년 3월 9일",
-    ];
+    const aiMessage = "더치트 \n  ㅎㅇ";
     setMessages([...messages, { content: aiMessage, sender: "AI" }]);
   };
 
   return (
     <div className={styles.parentContainer}>
       <div className={styles.chatContainer}>
-        {/* <button onClick={handleSendAIMessage}>AI 메시지 보내기</button> */}
+        <button onClick={handleSendAIMessage}>AI 메시지 보내기</button>
         <div className={styles.chatMessages} ref={chatMessagesRef}>
           {messages.map((message, index) => (
             <div
@@ -117,17 +108,13 @@ function Chat() {
                 }}
               >
                 {message.sender === "AI" ? (
-                  Array.isArray(message.content) ? (
-                    message.content.map((text, i) => <p key={i}>{text}</p>)
-                  ) : (
-                    <TypeAnimation
-                      sequence={[message.content, 1000]}
-                      wrapper="span"
-                      speed={50}
-                      repeat={Infinity}
-                      cursor={false}
-                    />
-                  )
+                  <TypeAnimation
+                    sequence={[message.content, 1000]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
+                    cursor={false}
+                  />
                 ) : (
                   message.content
                 )}
