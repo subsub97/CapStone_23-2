@@ -48,7 +48,7 @@ function Chat() {
     }
 
     const formData = new FormData();
-    formData.append("files", file);
+    formData.append("file", file);
 
     try {
       const response = await axios.post(
@@ -61,10 +61,15 @@ function Chat() {
         }
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setMessages([
           ...messages,
           { content: `Uploaded file: ${selectedFileName}`, sender: "file" },
+        ]);
+      } else {
+        setMessages([
+          ...messages,
+          { content: `Uploaded fail: ${selectedFileName}`, sender: "file" },
         ]);
       }
 
