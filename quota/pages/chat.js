@@ -25,6 +25,7 @@ function Chat() {
             },
           }
         );
+        setNewMessage("");
 
         if (response.status === 200) {
           setMessages([
@@ -32,7 +33,6 @@ function Chat() {
             { content: newMessage, sender: "user" },
             { content: response.data.message, sender: "AI" },
           ]);
-          setNewMessage("");
         } else {
           console.log("서버에서 응답이 올바르지 않습니다.");
         }
@@ -115,15 +115,9 @@ function Chat() {
     }
   };
 
-  const handleSendAIMessage = () => {
-    const aiMessage = "더치트 \n gd ";
-    setMessages([...messages, { content: aiMessage, sender: "AI" }]);
-  };
-
   return (
     <div className={styles.parentContainer}>
       <div className={styles.chatContainer}>
-        <button onClick={handleSendAIMessage}>AI 메시지 보내기</button>
         <div className={styles.chatMessages} ref={chatMessagesRef}>
           {messages.map((message, index) => (
             <div
