@@ -81,14 +81,14 @@ function Chat() {
   };
 
   const handleSendAIMessage = () => {
-    const aiMessage = "더치트 \n  ㅎㅇ";
+    const aiMessage = "더치트 \n  ";
     setMessages([...messages, { content: aiMessage, sender: "AI" }]);
   };
 
   return (
     <div className={styles.parentContainer}>
       <div className={styles.chatContainer}>
-        <button onClick={handleSendAIMessage}>AI 메시지 보내기</button>
+        {/* <button onClick={handleSendAIMessage}>AI 메시지 보내기</button> */}
         <div className={styles.chatMessages} ref={chatMessagesRef}>
           {messages.map((message, index) => (
             <div
@@ -108,13 +108,17 @@ function Chat() {
                 }}
               >
                 {message.sender === "AI" ? (
-                  <TypeAnimation
-                    sequence={[message.content, 1000]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                    cursor={false}
-                  />
+                  Array.isArray(message.content) ? (
+                    message.content.map((text, i) => <p key={i}>{text}</p>)
+                  ) : (
+                    <TypeAnimation
+                      sequence={[message.content, 1000]}
+                      wrapper="span"
+                      speed={50}
+                      repeat={Infinity}
+                      cursor={false}
+                    />
+                  )
                 ) : (
                   message.content
                 )}
