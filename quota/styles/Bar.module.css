@@ -1,0 +1,66 @@
+.topbarStyles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #a0a0a0;
+}
+
+.quotaStyles {
+  color: #00d295;
+  font-size: 40px;
+  font-family: "SBAggroB";
+  cursor: pointer;
+}
+
+.profileStyles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Jalnan";
+}
+
+.info {
+  width: 100px;
+  height: 30px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 0.5px solid #a0a0a0;
+  font-family: "Jalnan";
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+.buttonStyles {
+  width: 250px;
+  height: 50px;
+  background-color: #ffffff;
+  color: #4d377b;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: "Jalnan";
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+.listStyles {
+  width: 250px;
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: #ccd1ff;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  font-family: "Jalnan";
+  font-size: 16px;
+  border-radius: 12px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

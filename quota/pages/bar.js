@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "@/styles/Bar.module.css";
 
 const sidebarStyles = (isOpen) => ({
   height: "calc(100vh - 80px)",
@@ -13,43 +14,6 @@ const sidebarStyles = (isOpen) => ({
   borderRight: "0.5px solid #a0a0a0",
 });
 
-const topbarStyles = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: "100%",
-  height: "80px",
-  position: "fixed",
-  padding: "10px 20px",
-  backgroundColor: "#ffffff",
-  borderBottom: "0.5px solid #a0a0a0",
-};
-
-const quotaStyles = {
-  color: "#00D295",
-  fontSize: "40px",
-  fontFamily: "SBAggroB",
-  cursor: "pointer",
-};
-
-const profileStyles = {
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  fontFamily: "Jalnan",
-};
-
-const info = {
-  width: "100px",
-  height: "30px",
-  backgroundColor: "#ffffff",
-  color: "#000000",
-  border: "0.5px solid #a0a0a0",
-  fontFamily: "Jalnan",
-  fontSize: "14px",
-  borderRadius: "12px",
-};
-
 const slideBarStyles = (isOpen) => ({
   position: "fixed",
   top: "50px",
@@ -61,36 +25,6 @@ const slideBarStyles = (isOpen) => ({
   transform: isOpen ? "translateY(0%)" : "translateY(-10%)",
   padding: "10px",
 });
-
-const buttonStyles = {
-  width: "250px",
-  height: "50px",
-  backgroundColor: "#ffffff",
-  color: "#4D377B",
-  marginBottom: "10px",
-  border: "none",
-  cursor: "pointer",
-  fontFamily: "Jalnan",
-  fontSize: "18px",
-  borderRadius: "12px",
-};
-
-const listStyles = {
-  width: "250px",
-  height: "50px",
-  marginBottom: "10px",
-  backgroundColor: "#CCD1FF",
-  color: "#000000",
-  border: "none",
-  cursor: "pointer",
-  fontFamily: "Jalnan",
-  fontSize: "16px",
-  borderRadius: "12px",
-  textAlign: "center",
-  justifyContent: "center",
-  display: "flex",
-  alignItems: "center",
-};
 
 function Topbar({ google_name }) {
   const [isSlideBarOpen, setSlideBarOpen] = useState(false);
@@ -126,17 +60,17 @@ function Topbar({ google_name }) {
   return (
     <div>
       <div style={sidebarStyles(isSidebarOpen)}>
-        <button style={buttonStyles} onClick={handleNewChat}>
+        <button className={styles.buttonStyles} onClick={handleNewChat}>
           + 새 채팅 시작
         </button>
         {chats.map((chat) => (
-          <div key={chat.id} style={listStyles}>
-            {/* 각 채팅의 내용을 렌더링합니다. 이 예시에서는 각 채팅의 ID만 출력합니다. */}
+          <div key={chat.id} className={styles.listStyles}>
+            {}
             채팅 ID: {chat.id}
           </div>
         ))}
       </div>
-      <div style={topbarStyles}>
+      <div className={styles.topbarStyles}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <button
             onClick={handleSidebarToggle}
@@ -156,20 +90,20 @@ function Topbar({ google_name }) {
             }}
             onClick={gohome}
           ></img>
-          <div style={quotaStyles} onClick={gohome}>
+          <div className={styles.quotaStyles} onClick={gohome}>
             Quota
           </div>
         </div>
-        <div style={profileStyles}>
+        <div className={styles.profileStyles}>
           <div onClick={handleImageClick}>환영합니다, {googlename}</div>
           <img src={googlepicture} alt="Profile" width="40" height="40" />
         </div>
         <div style={slideBarStyles(isSlideBarOpen)}>
-          <button onClick={handleLogout} style={info}>
+          <button onClick={handleLogout} className={styles.info}>
             내 정보 수정
           </button>
           <br></br>
-          <button onClick={handleLogout} style={info}>
+          <button onClick={handleLogout} className={styles.info}>
             로그아웃
           </button>
         </div>
