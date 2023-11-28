@@ -1,0 +1,67 @@
+.parentContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Jalnan;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  height: calc(100vh - 80px);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  position: fixed;
+  top: 79px;
+  left: 45vh;
+  bottom: 0;
+}
+
+.chatMessages {
+  padding: 10px;
+  flex-grow: 1;
+  width: 100%;
+  max-height: 1000px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+.messageContainer {
+  text-align: right;
+}
+.message {
+  padding: 20px;
+  margin: 4px;
+  border-radius: 20px;
+  font-size: 16px; /* Add this to increase the text size */
+  background-color: #5347cd;
+  display: inline-block;
+  color: #ffffff;
+  font-family: "Jalnan";
+}
+
+.chatInput {
+  display: flex;
+  padding: 10px;
+  width: 70vw;
+  height: 60px;
+  border-top: 1px solid #ccc;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.button {
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
