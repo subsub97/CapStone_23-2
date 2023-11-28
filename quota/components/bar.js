@@ -35,8 +35,8 @@ function Topbar({ google_name }) {
 
   const handleNewChat = () => {
     const newChat = {
-      id: chats.length, // 새로운 채팅의 ID를 생성합니다. 실제 애플리케이션에서는 더 복잡한 ID 생성 방식을 사용할 수 있습니다.
-      messages: [], // 새로운 채팅의 메시지 목록을 초기화합니다.
+      id: chats.length,
+      messages: [],
     };
     setChats([...chats, newChat]);
   };
@@ -95,7 +95,7 @@ function Topbar({ google_name }) {
           </div>
         </div>
         <div className={styles.profileStyles}>
-          <div onClick={handleImageClick}>환영합니다, {googlename}</div>
+          <div onClick={handleImageClick}>환영합니다, {googlename}님</div>
           <img src={googlepicture} alt="Profile" width="40" height="40" />
         </div>
         <div style={slideBarStyles(isSlideBarOpen)}>

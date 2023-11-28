@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Axios from "axios";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Login from "./googlelogin";
+import Login from "../components/googlelogin";
 
 const ClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
@@ -36,11 +36,10 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme({
   typography: {
-    fontFamily: "Jalnan", // 사용하고자 하는 폰트명
+    fontFamily: "Jalnan",
   },
 });
 

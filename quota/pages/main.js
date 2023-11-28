@@ -1,6 +1,5 @@
-import Sidebar from "./sidebar";
-import Chat from "./chat";
-import Bar from "./bar";
+import Chat from "../components/chat";
+import Bar from "../components/bar";
 
 function App() {
   return (

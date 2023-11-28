@@ -9,8 +9,6 @@ const Login = () => {
   const googleSocialLogin = useGoogleLogin({
     scope: "email profile",
     onSuccess: async ({ code, redirect_uri }) => {
-      console.log("redirect_uri : " + redirect_uri);
-      console.log("Code : " + code);
       axios
         .post("http://localhost:8080/auth/code/google/callback", { code })
         .then(({ data }) => {
